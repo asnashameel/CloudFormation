@@ -1,0 +1,53 @@
+Parameters:
+  VPCCidr:
+    Type: String
+    Description: VPC Cidr
+    Default: 10.0.0.0/16
+Resources:
+  MYVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+     CidrBlock: !Ref VPCCidr
+     Tags:
+       - Key: Name
+         Value: !Sub "AWS_VPC_${AWS::Region}"
+  PublicSubnet1:
+        Type: AWS::EC2::Subnet
+        Properties:
+          VpcId: !Ref MYVPC
+          CidrBlock: 10.0.1.0/24
+          AvailabilityZone: !Select [0, !GetAZs '']
+          MapPublicIpOnLaunch: true
+          Tags:
+              - Key: Name
+                Value: "PublicSubnet1"
+  PublicSubnet2:
+        Type: AWS::EC2::Subnet
+        Properties:
+          VpcId: !Ref MYVPC
+          CidrBlock: 10.0.2.0/24
+          AvailabilityZone: !Select [1, !GetAZs '']
+          MapPublicIpOnLaunch: true
+          Tags:
+              - Key: Name
+                Value: "PublicSubnet2"
+  PrivateSubnet1:
+        Type: AWS::EC2::Subnet
+        Properties:
+          VpcId: !Ref MYVPC
+          CidrBlock: 10.0.3.0/24
+          AvailabilityZone: !Select [0, !GetAZs '']
+          MapPublicIpOnLaunch: true
+          Tags:
+              - Key: Name
+                Value: "PrivateSubnet1"
+  PrivateSubnet2:
+        Type: AWS::EC2::Subnet
+        Properties:
+          VpcId: !Ref MYVPC
+          CidrBlock: 10.0.4.0/24
+          AvailabilityZone: !Select [1, !GetAZs '']
+          MapPublicIpOnLaunch: true
+          Tags:
+              - Key: Name
+                Value: "PrivateSubnet2"
