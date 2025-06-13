@@ -20,7 +20,7 @@ Resources:
           MapPublicIpOnLaunch: true
           Tags:
               - Key: Name
-                Value: "PublicSubnet1"
+                Value: "PublicSubnt1"
   PublicSubnet2:
         Type: AWS::EC2::Subnet
         Properties:
@@ -30,7 +30,7 @@ Resources:
           MapPublicIpOnLaunch: true
           Tags:
               - Key: Name
-                Value: "PublicSubnet2"
+                Value: "PublicSubnt2"
   PrivateSubnet1:
         Type: AWS::EC2::Subnet
         Properties:
